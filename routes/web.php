@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TodosController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [TodosController::class, 'index']);
+Route::get('/todos/create', [TodosController::class, 'create'])->name('todos.create');
+Route::get('/todos/{todo}', [TodosController::class, 'show'])->name('todos.show');
+Route::post('/todos', [TodosController::class, 'store'])->name('todos.store');
